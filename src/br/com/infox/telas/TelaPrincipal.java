@@ -36,7 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCadastro = new javax.swing.JMenu();
         ItemCliente = new javax.swing.JMenuItem();
         ItemOS = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        MenuUsuarios = new javax.swing.JMenuItem();
         MenuRelatorio = new javax.swing.JMenu();
         ItemServicos = new javax.swing.JMenuItem();
         MenuAjuda = new javax.swing.JMenu();
@@ -89,9 +89,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         MenuCadastro.add(ItemOS);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        jMenuItem3.setText("Usuários");
-        MenuCadastro.add(jMenuItem3);
+        MenuUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuUsuarios.setText("Usuários");
+        MenuCadastro.add(MenuUsuarios);
 
         Menu.add(MenuCadastro);
 
@@ -227,8 +227,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCadastro;
     private javax.swing.JMenu MenuOpcoes;
     private javax.swing.JMenu MenuRelatorio;
+    private javax.swing.JMenuItem MenuUsuarios;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
