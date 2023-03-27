@@ -57,7 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,6 +91,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
         MenuUsuarios.setText("Usuários");
+        MenuUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuUsuariosActionPerformed(evt);
+            }
+        });
         MenuCadastro.add(MenuUsuarios);
 
         Menu.add(MenuCadastro);
@@ -134,30 +139,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblData))
-                        .addContainerGap(109, Short.MAX_VALUE))
+                            .addComponent(lblData)
+                            .addComponent(lblUsuario))
+                        .addContainerGap(152, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(20, 20, 20))))
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblData)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(18, 18, 18))
+            .addComponent(Desktop)
         );
 
-        setSize(new java.awt.Dimension(915, 523));
+        setSize(new java.awt.Dimension(612, 359));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,6 +184,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_ItemSairActionPerformed
+
+    private void MenuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsuariosActionPerformed
+        // TODO add your handling code here:
+        // As linhas abaixo irão abrir o formulário dentro do painel da TelaPrincipal
+        TelaUsuario usuario = new TelaUsuario();
+        usuario.setVisible(true);
+        Desktop.add(usuario);
+    }//GEN-LAST:event_MenuUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,10 +239,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuAjuda;
     private javax.swing.JMenu MenuCadastro;
     private javax.swing.JMenu MenuOpcoes;
-    private javax.swing.JMenu MenuRelatorio;
-    private javax.swing.JMenuItem MenuUsuarios;
+    public static javax.swing.JMenu MenuRelatorio;
+    public static javax.swing.JMenuItem MenuUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblData;
-    private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }
