@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.infox.telas;
-
+import java.sql.*;
+import br.com.infox.dal.ModuloConexao;
+import javax.swing.JOptionPane;
 /**
  *
  * @author bruno
@@ -13,10 +15,57 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaUsuario
      */
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
     public TelaUsuario() {
         initComponents();
+        conexao = ModuloConexao.conector();
     }
 
+    // Método para consultar usuários
+    private void consultar(){
+        String sql = "select * from tbusuarios where iduser = ?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtareaID.getText());
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                txtareaNome.setText(rs.getString(2));
+                txtareaFone.setText(rs.getString(3));
+                txtareaLogin.setText(rs.getString(4));
+                txtareaSenha.setText(rs.getString(5));
+                comboPerfil.setSelectedItem(rs.getString(6));
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário não cadastrado");
+                // As linhas abaixo "limpam" os campos
+                txtareaNome.setText(null);
+                txtareaFone.setText(null);
+                txtareaLogin.setText(null);
+                txtareaSenha.setText(null);
+                comboPerfil.setSelectedItem(null);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    // Método para inserir usuários
+    private void inserir(){
+        String sql = "insert into tbusuarios(iduser, usuario, fone, login, senha, perfil) values (?, ?, ?, ?, ?, ?)";
+        try {
+            pst.setString(1, txtareaID.getText());
+            pst.setString(2, txtareaNome.getText());
+            pst.setString(3, txtareaFone.getText());
+            pst.setString(4, txtareaLogin.getText());
+            pst.setString(5, txtareaSenha.getText());
+            pst.setString(6, comboPerfil.getSelectedItem().toString());
+        } catch (Exception e) {
+        }
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,11 +122,21 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/read.png"))); // NOI18N
         btnRead.setToolTipText("Consultar");
         btnRead.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
+            }
+        });
 
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/create.png"))); // NOI18N
         btnCreate.setToolTipText("Adicionar");
         btnCreate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreate.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +215,16 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
         setBounds(0, 0, 363, 328);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+        // TODO add your handling code here:
+        consultar();
+    }//GEN-LAST:event_btnReadActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        inserir();
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
