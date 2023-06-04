@@ -66,9 +66,17 @@ public class TelaLogin extends javax.swing.JFrame {
         conexao = ModuloConexao.conector();
         System.out.println(conexao);
         if (conexao != null) {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/DBOK.png")));
+            java.net.URL url = getClass().getResource("/br/com/infox/icones/DBOK.png");
+            if (url != null) {
+                lblStatus.setIcon(new javax.swing.ImageIcon(url));
+            }
+
         } else {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/DBERROR.png")));
+            java.net.URL url = getClass().getResource("/br/com/infox/icones/DBERROR.png");
+            if (url != null) {
+                lblStatus.setIcon(new javax.swing.ImageIcon(url));
+            }
+
         }
     }
 
