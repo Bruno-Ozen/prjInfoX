@@ -148,6 +148,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                 txtareaLogin.setText(null);
                 txtareaSenha.setText(null);
             }
+   }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -303,7 +304,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
         setBounds(0, 0, 363, 328);
     }// </editor-fold>//GEN-END:initComponents
-
+   
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
         consultar();
@@ -321,6 +322,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        remover();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 

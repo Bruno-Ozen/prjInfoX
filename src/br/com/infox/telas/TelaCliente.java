@@ -231,6 +231,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        remover();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -313,6 +314,35 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 int adicionado = pst.executeUpdate();
                 if (adicionado > 0) {
                     JOptionPane.showMessageDialog(null, "O cliente " + txtcliNome.getText() + " foi alterado com sucesso.");
+                    txtcliNome.setText(null);
+                    txtcliTelefone.setText(null);
+                    txtcliEndereco.setText(null);
+                    txtcliEmail.setText(null);
+                }
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+            txtcliNome.setText(null);
+            txtcliTelefone.setText(null);
+            txtcliEndereco.setText(null);
+            txtcliEmail.setText(null);
+        }
+    }
+    
+    public void remover(){
+        String sql = "delete from tbclientes where idclientes = ?";
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar o usuário este cliente?", "Atenção", JOptionPane.YES_NO_OPTION);
+            if(confirmar == JOptionPane.YES_OPTION)
+            try {
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, txtcliID.getText());
+                if (txtcliID.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Insira o ID do usuário que deseja deletar.");
+                } else {
+                // A linha abaixo atualiza a tabelaclientes com os dados do formulário
+                int adicionado = pst.executeUpdate();
+                if (adicionado > 0) {
+                    JOptionPane.showMessageDialog(null, "O cliente " + txtcliNome.getText() + " foi removido com sucesso.");
                     txtcliNome.setText(null);
                     txtcliTelefone.setText(null);
                     txtcliEndereco.setText(null);
