@@ -172,6 +172,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void ItemOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemOSActionPerformed
         // TODO add your handling code here:
+        // Chamando a tela de ordem de serviço
+        TelaOS os = new TelaOS();
+        os.setVisible(true);
+        Desktop.add(os);
     }//GEN-LAST:event_ItemOSActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
