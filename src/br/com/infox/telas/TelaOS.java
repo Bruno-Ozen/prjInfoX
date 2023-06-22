@@ -77,7 +77,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
         // sqlCli = "select * from tbclientes where idcli = "
         try{
             pst = conexao.prepareStatement(sql);
-            pst.setString(1, num_os);
+            pst.setInt(1, Integer.parseInt(num_os));
             rs = pst.executeQuery();
             if(rs.next()){
                 txtOS.setText(rs.getString(1));
@@ -98,11 +98,18 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 txtOSvalor.setText(rs.getString(9));
                 txtCliID.setText(rs.getString(10));
                 btnOScreate.setEnabled(false);
+                tblClientes.setVisible(false);
+                txtCliPesquisar.setEnabled(false);
             }else{
                 JOptionPane.showMessageDialog(null, "OS não cadasrada.");
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+        }catch(java.lang.NumberFormatException e1){
+            JOptionPane.showMessageDialog(null, "OS inválida.");
+            System.out.println(e1);
+        }
+        catch(Exception e2){
+            JOptionPane.showMessageDialog(null, e2);
+            System.out.println(e2);
         }
     }
 
