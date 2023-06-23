@@ -78,6 +78,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
 
         }
+        btnLogin.getRootPane().setDefaultButton(btnLogin);
     }
 
     /**

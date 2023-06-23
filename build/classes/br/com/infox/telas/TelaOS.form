@@ -363,12 +363,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Equipamento"/>
+        <Property name="text" type="java.lang.String" value="*Equipamento"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Defeito"/>
+        <Property name="text" type="java.lang.String" value="*Defeito"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">

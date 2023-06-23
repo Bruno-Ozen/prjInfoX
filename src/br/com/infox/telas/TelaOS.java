@@ -112,7 +112,68 @@ public class TelaOS extends javax.swing.JInternalFrame {
             System.out.println(e2);
         }
     }
+    
+    public void alterar_os(){
+        String sql = "update tbos set tipo = ?, situacao = ?, equipamento = ?, defeito = ?, servico = ?, tecnico = ?, valor = ? where os = ?;";
+        try{
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, tipo);
+            pst.setString(2, cboOSSituacao.getSelectedItem().toString());
+            pst.setString(3, txtOSequip.getText());
+            pst.setString(4, txtOSdefeito.getText());
+            pst.setString(5, txtOSservico.getText());
+            pst.setString(6, txtOStecnico.getText());
+            // Substitui a vírgula pelo ponto
+            pst.setString(7, txtOSvalor.getText().replace(",", "."));
+            pst.setString(8, txtOS.getText());
+            if ((txtCliID.getText().isEmpty()) || (txtOSequip.getText().isEmpty()) || (txtOSdefeito.getText().isEmpty())) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios.");
+            }else {
+                // A linha abaixo atualiza a tabelausuarios com os dados do formulário
+                int adicionado = pst.executeUpdate();
+                if (adicionado > 0) {
+                    JOptionPane.showMessageDialog(null, "OS editada com sucesso.");
+                    txtCliID.setText(null);
+                    txtOSequip.setText(null);
+                    txtOSdefeito.setText(null);
+                    txtOSservico.setText(null);
+                    txtOStecnico.setText(null);
+                    txtOSvalor.setText(null);
+                    btnOScreate.setEnabled(true);
+                    txtCliPesquisar.setEnabled(true);
+                    tblClientes.setVisible(true);
+                }
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
+    private void deletar_os(){
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir essa OS?", "Atenção", JOptionPane.YES_NO_OPTION);
+        String sql = "delete from tbos where os = ?;";
+        if(confirma == JOptionPane.YES_OPTION){
+            try {
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, txtOS.getText());
+                int apagado = pst.executeUpdate();
+                if(apagado>0){
+                    JOptionPane.showMessageDialog(null, "OS excluída com sucesso.");
+                    txtCliID.setText(null);
+                    txtOSequip.setText(null);
+                    txtOSdefeito.setText(null);
+                    txtOSservico.setText(null);
+                    txtOStecnico.setText(null);
+                    txtOSvalor.setText(null);
+                    btnOScreate.setEnabled(true);
+                    txtCliPesquisar.setEnabled(true);
+                    tblClientes.setVisible(true);
+                }
+            }catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "");
+            }
+        }
+    }
     // Método de alterar dados da tabela
     private void pesquisar_cliente() {
         String sql = "select idclientes as ID, nome as Nome, fone as Fone from tbclientes where nome like ?";
@@ -336,9 +397,9 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel3.setText("Equipamento");
+        jLabel3.setText("*Equipamento");
 
-        jLabel4.setText("Defeito");
+        jLabel4.setText("*Defeito");
 
         jLabel5.setText("Técnico");
 
@@ -522,10 +583,12 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
     private void btnOSupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOSupdateActionPerformed
         // TODO add your handling code here:
+        alterar_os();
     }//GEN-LAST:event_btnOSupdateActionPerformed
 
     private void btnOSdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOSdeleteActionPerformed
         // TODO add your handling code here:
+        deletar_os();
     }//GEN-LAST:event_btnOSdeleteActionPerformed
 
     private void btnOSprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOSprintActionPerformed
