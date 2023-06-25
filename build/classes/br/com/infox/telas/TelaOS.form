@@ -94,18 +94,21 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel2" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel2" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cboOSSituacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboOSSituacao" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtOSequip" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -356,6 +359,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblClientesMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tblClientes = new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int rowIndex, int colIndex){&#xa;        return false;&#xa;    }&#xa;};"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -468,6 +474,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/infox/icones/edit.png"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOSupdateActionPerformed"/>
@@ -478,6 +485,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/infox/icones/delete.png"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOSdeleteActionPerformed"/>
@@ -489,6 +497,7 @@
               <Image iconType="3" name="/br/com/infox/icones/IMPRIMIR.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Imprimir OS"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOSprintActionPerformed"/>
@@ -504,14 +513,15 @@
     <Component class="javax.swing.JComboBox" name="cboOSSituacao">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Na bancada"/>
-            <StringItem index="1" value="Entrega OK"/>
-            <StringItem index="2" value="Or&#xe7;amento REPROVADO"/>
-            <StringItem index="3" value="Aguardando aprova&#xe7;&#xe3;o"/>
-            <StringItem index="4" value="Aguardando pe&#xe7;as"/>
-            <StringItem index="5" value="Abandonado pelo cliente"/>
-            <StringItem index="6" value="Retornou"/>
+          <StringArray count="8">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="Na bancada"/>
+            <StringItem index="2" value="Entrega OK"/>
+            <StringItem index="3" value="Or&#xe7;amento REPROVADO"/>
+            <StringItem index="4" value="Aguardando aprova&#xe7;&#xe3;o"/>
+            <StringItem index="5" value="Aguardando pe&#xe7;as"/>
+            <StringItem index="6" value="Abandonado pelo cliente"/>
+            <StringItem index="7" value="Retornou"/>
           </StringArray>
         </Property>
       </Properties>
