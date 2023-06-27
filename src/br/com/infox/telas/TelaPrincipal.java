@@ -3,9 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.com.infox.telas;
+
+import br.com.infox.dal.ModuloConexao;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author bruno
@@ -15,8 +22,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
+    Connection conexao = null;
+
     public TelaPrincipal() {
         initComponents();
+        conexao = ModuloConexao.conector();
     }
 
     /**
@@ -38,6 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ItemOS = new javax.swing.JMenuItem();
         MenuUsuarios = new javax.swing.JMenuItem();
         MenuRelatorio = new javax.swing.JMenu();
+        itemClientes = new javax.swing.JMenuItem();
         ItemServicos = new javax.swing.JMenuItem();
         MenuAjuda = new javax.swing.JMenu();
         ItemSobre = new javax.swing.JMenuItem();
@@ -106,6 +117,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu.add(MenuCadastro);
 
         MenuRelatorio.setText("Relatório");
+
+        itemClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        itemClientes.setText("Clientes");
+        itemClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemClientesActionPerformed(evt);
+            }
+        });
+        MenuRelatorio.add(itemClientes);
 
         ItemServicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         ItemServicos.setText("Serviços");
@@ -188,7 +208,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void ItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemSairActionPerformed
         // Exibe uma caixa de diálogo
         int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção", JOptionPane.YES_NO_OPTION);
-        if(sair == JOptionPane.YES_OPTION){
+        if (sair == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_ItemSairActionPerformed
@@ -207,6 +227,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cliente.setVisible(true);
         Desktop.add(cliente);
     }//GEN-LAST:event_ItemClienteActionPerformed
+
+    private void itemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClientesActionPerformed
+        // TODO add your handling code here:
+        // Gerando um relatório de Clientes
+        int confirma = JOptionPane.showConfirmDialog(null, "Você deseja imprimir o relatório de serviços?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                // Usando a classe JasperPrint para preparar a impressão de um relatório
+                JasperPrint print = JasperFillManager.fillReport("C:/reports/clientes.jasper", null, conexao);
+                // A linha abaixo exibe o relatório a partir da classe JasperViewer
+                JasperViewer.viewReport(print, false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, Desktop);
+            }
+        }
+    }//GEN-LAST:event_itemClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,6 +292,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuOpcoes;
     public static javax.swing.JMenu MenuRelatorio;
     public static javax.swing.JMenuItem MenuUsuarios;
+    private javax.swing.JMenuItem itemClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
