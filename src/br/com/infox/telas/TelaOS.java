@@ -632,7 +632,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
     private void rbtOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtOrcamentoActionPerformed
         // TODO add your handling code here:
         // Atribuindo um texto a variavel tipo se selecionado
-
+        tipo = "Orçamento";
     }//GEN-LAST:event_rbtOrcamentoActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened

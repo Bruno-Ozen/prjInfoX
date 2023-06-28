@@ -39,9 +39,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         ItemCliente = new javax.swing.JMenuItem();
@@ -75,15 +75,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Rockwell", 3, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel1.setText("X");
-
         lblData.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblData.setText("Data");
 
         lblUsuario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblUsuario.setText("Usuário");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/Logo_InfoX.png"))); // NOI18N
 
         MenuCadastro.setText("Cadastro");
 
@@ -129,6 +127,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         ItemServicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         ItemServicos.setText("Serviços");
+        ItemServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemServicosActionPerformed(evt);
+            }
+        });
         MenuRelatorio.add(ItemServicos);
 
         Menu.add(MenuRelatorio);
@@ -164,15 +167,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblData)
                             .addComponent(lblUsuario))
-                        .addContainerGap(163, Short.MAX_VALUE))))
+                        .addContainerGap(163, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +183,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblData)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
+                .addComponent(jLabel2))
             .addComponent(Desktop)
         );
 
@@ -231,7 +233,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void itemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClientesActionPerformed
         // TODO add your handling code here:
         // Gerando um relatório de Clientes
-        int confirma = JOptionPane.showConfirmDialog(null, "Você deseja imprimir o relatório de serviços?", "Atenção", JOptionPane.YES_NO_OPTION);
+        int confirma = JOptionPane.showConfirmDialog(null, "Você confirma a impressão desse relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
         if (confirma == JOptionPane.YES_OPTION) {
             try {
                 // Usando a classe JasperPrint para preparar a impressão de um relatório
@@ -243,6 +245,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_itemClientesActionPerformed
+
+    private void ItemServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemServicosActionPerformed
+        // TODO add your handling code here:
+        // Gerando um relatório de Serviços
+        int confirma = JOptionPane.showConfirmDialog(null, "Você confirma a impressão desse relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                // Usando a classe JasperPrint para preparar a impressão de um relatório
+                JasperPrint print = JasperFillManager.fillReport("C:/reports/servicos.jasper", null, conexao);
+                // A linha abaixo exibe o relatório a partir da classe JasperViewer
+                JasperViewer.viewReport(print, false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, Desktop);
+            }
+        }
+    }//GEN-LAST:event_ItemServicosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,7 +311,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public static javax.swing.JMenu MenuRelatorio;
     public static javax.swing.JMenuItem MenuUsuarios;
     private javax.swing.JMenuItem itemClientes;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
