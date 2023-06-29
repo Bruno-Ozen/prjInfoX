@@ -9,6 +9,9 @@ import java.sql.*;
 import br.com.infox.dal.ModuloConexao;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -155,6 +158,21 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "");
+            }
+        }
+    }
+    
+    // Método para imprimir uma OS
+    private void imprimir_os(){
+        int confirma = JOptionPane.showConfirmDialog(null, "Você confirma a impressão desse relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION) {
+            try {
+                // Usando a classe JasperPrint para preparar a impressão de um relatório
+                JasperPrint print = JasperFillManager.fillReport("C:/reports/os.jasper", null, conexao);
+                // A linha abaixo exibe o relatório a partir da classe JasperViewer
+                JasperViewer.viewReport(print, false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }
@@ -612,6 +630,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
     private void btnOSprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOSprintActionPerformed
         // TODO add your handling code here:
+        imprimir_os();
     }//GEN-LAST:event_btnOSprintActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

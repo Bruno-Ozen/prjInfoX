@@ -241,7 +241,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 // A linha abaixo exibe o relatório a partir da classe JasperViewer
                 JasperViewer.viewReport(print, false);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, Desktop);
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }//GEN-LAST:event_itemClientesActionPerformed
