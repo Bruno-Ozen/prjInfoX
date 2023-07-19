@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.JInternalFrame;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -24,6 +25,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     Connection conexao = null;
 
+    // Instancia do próprio objeto da classe:
+    TelaPrincipal instance = this;
+        
     public TelaPrincipal() {
         initComponents();
         conexao = ModuloConexao.conector();
@@ -196,8 +200,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Chamando a tela de ordem de serviço
         TelaOS os = new TelaOS();
-        os.setVisible(true);
-        Desktop.add(os);
+        adicionaTela(os);
     }//GEN-LAST:event_ItemOSActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -219,15 +222,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         // As linhas abaixo irão abrir o formulário dentro do painel da TelaPrincipal
         TelaUsuario usuario = new TelaUsuario();
-        usuario.setVisible(true);
-        Desktop.add(usuario);
+        adicionaTela(usuario);
     }//GEN-LAST:event_MenuUsuariosActionPerformed
 
     private void ItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemClienteActionPerformed
         // TODO add your handling code here:
         TelaCliente cliente = new TelaCliente();
-        cliente.setVisible(true);
-        Desktop.add(cliente);
+        adicionaTela(cliente);
     }//GEN-LAST:event_ItemClienteActionPerformed
 
     private void itemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClientesActionPerformed
@@ -261,7 +262,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ItemServicosActionPerformed
-
+    
+    public void adicionaTela(JInternalFrame tela){
+        tela.setVisible(true);
+        Desktop.add(tela);
+    }
     /**
      * @param args the command line arguments
      */

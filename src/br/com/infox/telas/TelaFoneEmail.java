@@ -18,6 +18,7 @@ public class TelaFoneEmail extends javax.swing.JInternalFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    String modo;
     /**
      * Creates new form TelaFoneEmail
      */
@@ -48,6 +49,14 @@ public class TelaFoneEmail extends javax.swing.JInternalFrame {
         }
         else if(modo == "fone"){
         }
+    }
+    
+    private void alterar(){
+        
+    }
+    
+    private void remover(){
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
