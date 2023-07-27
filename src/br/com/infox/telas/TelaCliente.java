@@ -23,6 +23,8 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    
+    private TelaPrincipal telaPrincipal;
 
     public TelaCliente() {
         initComponents();
@@ -159,6 +161,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         jLabel7.setText("ID");
 
         btndetalhesEndereco.setText("Detalhes");
+        btndetalhesEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndetalhesEnderecoActionPerformed(evt);
+            }
+        });
 
         btndetalhesEmailFone.setText("Detalhes");
         btndetalhesEmailFone.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +259,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtcliTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,10 +409,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         ((DefaultTableModel) tblClientes.getModel()).setRowCount(0);
     }
     
-    private void adicionaTela(){
-        TelaPrincipal.instance.adicionaTela(telafone);
-    }
-    
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         alterar();
@@ -430,9 +433,13 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btndetalhesEmailFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEmailFoneActionPerformed
         // TODO add your handling code here:
-        TelaFoneEmail telafone = new TelaFoneEmail();
-
+        
     }//GEN-LAST:event_btndetalhesEmailFoneActionPerformed
+
+    private void btndetalhesEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEnderecoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btndetalhesEnderecoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

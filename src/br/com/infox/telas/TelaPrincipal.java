@@ -270,6 +270,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    public void criarInternalFrame(JInternalFrame jInternalFrame) {
+        jInternalFrame = new JInternalFrame(); // Passa a referência da TelaPrincipal
+        // Configurações adicionais da JInternalFrame
+        // ...
+        this.add(jInternalFrame);
+        jInternalFrame.setVisible(true);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
