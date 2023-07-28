@@ -24,7 +24,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    private TelaPrincipal telaPrincipal;
+    static TelaPrincipal telaPrincipal;
 
     public TelaCliente() {
         initComponents();
@@ -438,7 +438,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btndetalhesEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEnderecoActionPerformed
         // TODO add your handling code here:
-        
+        TelaPrincipal telaPrincipal = TelaPrincipal.getInstancia();
+        TelaEndereco telaEndereco = new TelaEndereco();
+        telaPrincipal.adicionaTela(telaEndereco);
     }//GEN-LAST:event_btndetalhesEnderecoActionPerformed
 
 

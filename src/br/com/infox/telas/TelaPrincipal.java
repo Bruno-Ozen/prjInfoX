@@ -26,12 +26,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Connection conexao = null;
 
     // Instancia do próprio objeto da classe:
-    TelaPrincipal instance = this;
+    private static TelaPrincipal instancia;
         
     public TelaPrincipal() {
         initComponents();
         conexao = ModuloConexao.conector();
     }
+    public static TelaPrincipal getInstancia() {
+        if (instancia == null) {
+            instancia = new TelaPrincipal();
+        }
+        return instancia;
+    }   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -267,17 +273,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
         Desktop.add(tela);
     }
+    
+    public void adicionaTelaEndereco(){
+        TelaEndereco telaEndereco = new TelaEndereco();
+        telaEndereco.setVisible(true);
+        Desktop.add(telaEndereco);
+    }
     /**
      * @param args the command line arguments
      */
-    
-    public void criarInternalFrame(JInternalFrame jInternalFrame) {
-        jInternalFrame = new JInternalFrame(); // Passa a referência da TelaPrincipal
-        // Configurações adicionais da JInternalFrame
-        // ...
-        this.add(jInternalFrame);
-        jInternalFrame.setVisible(true);
-    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -306,7 +310,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                instancia = new TelaPrincipal();
+                instancia.setVisible(true);
             }
         });
     }
