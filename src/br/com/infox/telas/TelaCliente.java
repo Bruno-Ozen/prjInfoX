@@ -24,7 +24,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    static TelaPrincipal telaPrincipal;
+    static TelaFoneEmail telaFoneEmail;
+    static TelaEndereco telaEndereco;
+   
 
     public TelaCliente() {
         initComponents();
@@ -433,14 +435,18 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btndetalhesEmailFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEmailFoneActionPerformed
         // TODO add your handling code here:
-        
+        telaFoneEmail = new TelaFoneEmail();
+        TelaLogin.principal.adicionaTela(telaFoneEmail);
+        telaFoneEmail.toFront();
+        TelaPrincipal.cliente.setVisible(false);
     }//GEN-LAST:event_btndetalhesEmailFoneActionPerformed
 
     private void btndetalhesEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEnderecoActionPerformed
         // TODO add your handling code here:
-        TelaPrincipal telaPrincipal = TelaPrincipal.getInstancia();
-        TelaEndereco telaEndereco = new TelaEndereco();
-        telaPrincipal.adicionaTela(telaEndereco);
+        telaEndereco = new TelaEndereco();
+        TelaLogin.principal.adicionaTela(telaEndereco);
+        telaEndereco.toFront();
+        TelaPrincipal.cliente.setVisible(false);
     }//GEN-LAST:event_btndetalhesEnderecoActionPerformed
 
 

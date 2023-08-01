@@ -24,7 +24,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     Connection conexao = null;
-
+    static TelaOS os;
+    static TelaCliente cliente;
+    static TelaUsuario usuario;
     // Instancia do próprio objeto da classe:
     private static TelaPrincipal instancia;
         
@@ -32,12 +34,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         conexao = ModuloConexao.conector();
     }
-    public static TelaPrincipal getInstancia() {
-        if (instancia == null) {
-            instancia = new TelaPrincipal();
-        }
-        return instancia;
-    }   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,7 +201,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void ItemOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemOSActionPerformed
         // TODO add your handling code here:
         // Chamando a tela de ordem de serviço
-        TelaOS os = new TelaOS();
+        os = new TelaOS();
         adicionaTela(os);
     }//GEN-LAST:event_ItemOSActionPerformed
 
@@ -227,13 +223,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void MenuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsuariosActionPerformed
         // TODO add your handling code here:
         // As linhas abaixo irão abrir o formulário dentro do painel da TelaPrincipal
-        TelaUsuario usuario = new TelaUsuario();
+        usuario = new TelaUsuario();
         adicionaTela(usuario);
     }//GEN-LAST:event_MenuUsuariosActionPerformed
 
     private void ItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemClienteActionPerformed
         // TODO add your handling code here:
-        TelaCliente cliente = new TelaCliente();
+        cliente = new TelaCliente();
         adicionaTela(cliente);
     }//GEN-LAST:event_ItemClienteActionPerformed
 
@@ -274,11 +270,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Desktop.add(tela);
     }
     
-    public void adicionaTelaEndereco(){
-        TelaEndereco telaEndereco = new TelaEndereco();
-        telaEndereco.setVisible(true);
-        Desktop.add(telaEndereco);
-    }
     /**
      * @param args the command line arguments
      */
