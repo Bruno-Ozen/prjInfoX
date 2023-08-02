@@ -300,7 +300,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     //Método para pesquisar clientes pelo nome com filtro
     private void pesquisar_cliente() {
-        String sql = "select idclientes as ID, nome as Nome, endereco as Endereço, fone as Fone, email as Email from tbclientes where nome like ?";
+        String sql = "";
         try {
             pst = conexao.prepareStatement(sql);
             //Passando o conteúdo da caixa de pesquisa
@@ -435,16 +435,22 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btndetalhesEmailFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEmailFoneActionPerformed
         // TODO add your handling code here:
-        telaFoneEmail = new TelaFoneEmail();
-        TelaLogin.principal.adicionaTela(telaFoneEmail);
+        if(telaFoneEmail == null){
+            telaFoneEmail = new TelaFoneEmail();
+            TelaLogin.principal.adicionaTela(telaFoneEmail);
+        }
+        telaFoneEmail.setVisible(true);
         telaFoneEmail.toFront();
         TelaPrincipal.cliente.setVisible(false);
     }//GEN-LAST:event_btndetalhesEmailFoneActionPerformed
 
     private void btndetalhesEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEnderecoActionPerformed
         // TODO add your handling code here:
-        telaEndereco = new TelaEndereco();
-        TelaLogin.principal.adicionaTela(telaEndereco);
+        if(telaEndereco == null){
+            telaEndereco = new TelaEndereco();
+            TelaLogin.principal.adicionaTela(telaEndereco);
+        }
+        telaEndereco.setVisible(true);
         telaEndereco.toFront();
         TelaPrincipal.cliente.setVisible(false);
     }//GEN-LAST:event_btndetalhesEnderecoActionPerformed
