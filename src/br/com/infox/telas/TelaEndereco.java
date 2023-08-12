@@ -4,6 +4,11 @@
  */
 package br.com.infox.telas;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruno
@@ -13,12 +18,53 @@ public class TelaEndereco extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaEndereco
      */
-    public TelaEndereco() {
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    private String user;
+    private int selectedID;
+
+    public TelaEndereco(String user, int selectedID) {
         initComponents();
+        this.user = user;
+        this.selectedID = selectedID;
     }
 
     private void inserir() {
-        String sql = "insert into";
+        String sql = "insert into estado(nome_estado) value (?);\n"
+                + "insert into cidade(nome_cidade, idestado) values(?, SELECT LAST_INSERT_ID());\n"
+                + "insert into bairro(nome_bairro, idcidade) values (?, SELECT LAST_INSERT_ID());\n"
+                + "insert into endereco (logradouro, numero_endereco, complemento, idbairro, idcli)\n"
+                + "values(?, ?, ?, SELECT LAST_INSERT_ID(), ?);";
+        try {
+            if(txtLogradouro.getText().isEmpty() || txtComplemento.getText().isEmpty()
+                || txtBairro.getText().isEmpty() || txtCidade.getText().isEmpty()
+                || txtCidade.getText().isEmpty() || txtEstado.getText().isEmpty()
+                || txtNumero.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios.");
+            }else{
+                pst = conexao.prepareStatement(sql);
+                pst.setString(0, txtEstado.getText());
+                pst.setString(1, txtCidade.getText());
+                pst.setString(2, txtBairro.getText());
+                pst.setString(3, txtLogradouro.getText());
+                pst.setString(4, txtNumero.getText());
+                pst.setString(5, txtComplemento.getText());
+                pst.setString(6, Integer.toString(selectedID));
+                rs = pst.executeQuery();
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            txtEstado.setText(null);
+            txtCidade.setText(null);
+            txtBairro.setText(null);
+            txtLogradouro.setText(null);
+            txtNumero.setText(null);
+            txtComplemento.setText(null);
+        }
+
     }
 
     private void consultar() {
@@ -60,9 +106,9 @@ public class TelaEndereco extends javax.swing.JInternalFrame {
         btnRead = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
-        jLabel2.setText("Número");
+        jLabel2.setText("Número*");
 
-        jLabel3.setText("Complemento");
+        jLabel3.setText("Complemento*");
 
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/create.png"))); // NOI18N
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -85,13 +131,13 @@ public class TelaEndereco extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Logradouro");
+        jLabel1.setText("Logradouro*");
 
-        jLabel4.setText("Bairro");
+        jLabel4.setText("Bairro*");
 
-        jLabel5.setText("Cidade");
+        jLabel5.setText("Cidade*");
 
-        jLabel6.setText("Estado");
+        jLabel6.setText("Estado*");
 
         txtBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +172,7 @@ public class TelaEndereco extends javax.swing.JInternalFrame {
                 .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

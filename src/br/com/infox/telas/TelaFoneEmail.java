@@ -18,12 +18,16 @@ public class TelaFoneEmail extends javax.swing.JInternalFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    String modo;
+    
+    private String user;
+    private int selectedID;
     /**
      * Creates new form TelaFoneEmail
      */
-    public TelaFoneEmail() {
+    public TelaFoneEmail(String user, int selectedID) {
         initComponents();
+        this.user = user;
+        this.selectedID = selectedID;
     }
     
     private void consultar() {
@@ -35,20 +39,8 @@ public class TelaFoneEmail extends javax.swing.JInternalFrame {
         }
     }
         
-    private void inserir(String modo){
-        if(modo == "email"){
-            String sql = "insert into email(email, principal, iduser) values (?, ?, ?);";
-            try {
-                pst = conexao.prepareStatement(sql);
-                pst.setString(1, sql);
-                rs = pst.executeQuery();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-        }
-        else if(modo == "fone"){
-        }
+    private void inserir(){
+        
     }
     
     private void alterar(){
@@ -210,7 +202,7 @@ public class TelaFoneEmail extends javax.swing.JInternalFrame {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        inserir(modo);
+        inserir();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed

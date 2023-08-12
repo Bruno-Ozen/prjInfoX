@@ -26,11 +26,14 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     
     static TelaFoneEmail telaFoneEmail;
     static TelaEndereco telaEndereco;
+    private int selectedID;
    
 
     public TelaCliente() {
         initComponents();
         conexao = ModuloConexao.conector();
+        btndetalhesEndereco.setEnabled(false);
+        btndetalhesEmailFone.setEnabled(false);
     }
 
     /**
@@ -321,6 +324,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     public void setarCampos() {
         int setar = tblClientes.getSelectedRow();
         txtcliID.setText(tblClientes.getModel().getValueAt(setar, 0).toString());
+        // Torna o botão de email e fone ativos e passa o ID para o SelectedID poder se
+        // comunicar com os formularios de fone e endereço
+        selectedID = Integer.parseInt(tblClientes.getModel().getValueAt(setar, 0).toString());
+        btndetalhesEndereco.setEnabled(true);
+        btndetalhesEmailFone.setEnabled(true);
         txtcliNome.setText(tblClientes.getModel().getValueAt(setar, 1).toString());
         txtcliEndereco.setText(tblClientes.getModel().getValueAt(setar, 2).toString());
         txtcliTelefone.setText(tblClientes.getModel().getValueAt(setar, 3).toString());
@@ -436,7 +444,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private void btndetalhesEmailFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEmailFoneActionPerformed
         // TODO add your handling code here:
         if(telaFoneEmail == null){
-            telaFoneEmail = new TelaFoneEmail();
+            telaFoneEmail = new TelaFoneEmail("Cliente", selectedID);
             TelaLogin.principal.adicionaTela(telaFoneEmail);
         }
         telaFoneEmail.setVisible(true);
@@ -447,7 +455,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private void btndetalhesEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetalhesEnderecoActionPerformed
         // TODO add your handling code here:
         if(telaEndereco == null){
-            telaEndereco = new TelaEndereco();
+            telaEndereco = new TelaEndereco("Cliente", selectedID);
             TelaLogin.principal.adicionaTela(telaEndereco);
         }
         telaEndereco.setVisible(true);
